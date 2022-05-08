@@ -110,11 +110,11 @@ hydra:
     hydra: []
     task: []
   job:
-    name: set_data_config
+    name: set_train_config
     override_dirname: ''
     id: ???
     num: ???
-    config_name: data_config
+    config_name: train_config
     env_set: {}
     env_copy: []
     config:

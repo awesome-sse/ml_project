@@ -1,7 +1,7 @@
 import hydra
 from omegaconf import DictConfig, OmegaConf
 
-@hydra.main(config_name="data_config")
+@hydra.main(config_path=".", config_name="train_config")
 def set_data_config(cfg : DictConfig) -> None:
     print(OmegaConf.to_yaml(cfg))
 

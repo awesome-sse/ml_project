@@ -4,20 +4,18 @@ from typing import Dict, Union
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.pipeline import Pipeline
 
-SklearnRegressionModel = Union[RandomForestRegressor, LinearRegression]
+SklearnRegressionModel = Union[RandomForestClassifier, XGBClassifier]
 
 
 def predict_model(
-    model: Pipeline, features: pd.DataFrame, use_log_trick: bool = False
+    model: Pipeline, features: pd.DataFrame
 ) -> np.ndarray:
     predicts = model.predict(features)
-    if use_log_trick:
-        predicts = np.exp(predicts)
     return predicts
 
 

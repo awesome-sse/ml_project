@@ -20,7 +20,7 @@ class TrainingPipelineParams:
     train_params: TrainingParams
     downloading_params: Optional[DownloadParams] = None
     use_mlflow: bool = False
-    mlflow_uri: str = "http://18.156.5.226/"
+    mlflow_uri: str = "http://127.0.0.0/"
     mlflow_experiment: str = "inference_demo"
 
 
