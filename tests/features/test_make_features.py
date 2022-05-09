@@ -4,7 +4,7 @@ import pytest
 from numpy.testing import assert_allclose
 
 from src.data.make_dataset import read_data
-from src.enities.feature_params import FeatureParams
+from src.entities.feature_params import FeatureParams
 from src.features.build_features import make_features, extract_target, build_transformer
 
 

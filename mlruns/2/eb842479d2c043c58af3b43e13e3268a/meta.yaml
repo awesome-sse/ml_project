@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/2/eb842479d2c043c58af3b43e13e3268a/artifacts
+end_time: 1652100149641
+entry_point_name: ''
+experiment_id: '2'
+lifecycle_stage: active
+name: ''
+run_id: eb842479d2c043c58af3b43e13e3268a
+run_uuid: eb842479d2c043c58af3b43e13e3268a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1652100143202
+status: 3
+tags: []
+user_id: stani

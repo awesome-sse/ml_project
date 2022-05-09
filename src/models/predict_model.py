@@ -9,7 +9,7 @@ from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.pipeline import Pipeline
 
-SklearnRegressionModel = Union[RandomForestClassifier, XGBClassifier]
+ClassificationModel = Union[RandomForestClassifier, XGBClassifier]
 
 
 def predict_model(
@@ -23,7 +23,6 @@ def evaluate_model(
     predicts: np.ndarray, target: pd.Series, model_type: str,
 ) -> Dict[str, float]:
     return {
-        "model": model_type, 
         "accuracy_score": accuracy_score(target, predicts),
         "precision_score": precision_score(target, predicts),
         "recall_score": recall_score(target, predicts),
@@ -32,7 +31,7 @@ def evaluate_model(
 
 
 def create_inference_pipeline(
-    model: SklearnRegressionModel, transformer: ColumnTransformer
+    model: ClassificationModel, transformer: ColumnTransformer
 ) -> Pipeline:
     return Pipeline([("feature_part", transformer), ("model_part", model)])
 
@@ -42,3 +41,9 @@ def serialize_model(model: object, output: str) -> str:
         pickle.dump(model, f)
     return output
 
+
+def load_model(
+    model_path: str
+) -> ClassificationModel:
+    model = pickle.load(open(model_path, 'rb'))
+    return model

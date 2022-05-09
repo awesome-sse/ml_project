@@ -3,7 +3,8 @@ import os
 from py._path.local import LocalPath
 
 from src.train_pipeline import run_train_pipeline
-from src.enities import (
+from src.entities import (
+    MlFlowParams,
     TrainingPipelineParams,
     SplittingParams,
     FeatureParams,
@@ -22,6 +23,11 @@ def test_train_end2end(
     expected_output_model_path = tmpdir.join("model.pkl")
     expected_metric_path = tmpdir.join("metrics.json")
     params = TrainingPipelineParams(
+        ml_flow_params=MlFlowParams(
+            use_mlflow=False,
+            mlflow_uri="0.0.0.0",
+            mlflow_experiment="homework1",
+        ),
         input_data_path=dataset_path,
         output_model_path=expected_output_model_path,
         metric_path=expected_metric_path,

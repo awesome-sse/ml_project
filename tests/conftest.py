@@ -1,7 +1,6 @@
 import os
 
 import pytest
-from typing import List
 
 
 @pytest.fixture()
@@ -16,7 +15,7 @@ def target_col():
 
 
 @pytest.fixture()
-def categorical_features() -> List[str]:
+def categorical_features() -> list[str]:
     return [
         "sex",
         "cp",
@@ -30,7 +29,7 @@ def categorical_features() -> List[str]:
 
 
 @pytest.fixture
-def numerical_features() -> List[str]:
+def numerical_features() -> list[str]:
     return [
         "age",
         "trestbps",
@@ -41,5 +40,5 @@ def numerical_features() -> List[str]:
 
 
 @pytest.fixture()
-def features_to_drop() -> List[str]:
+def features_to_drop() -> list[str]:
     return [""]

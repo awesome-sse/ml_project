@@ -5,6 +5,7 @@ from .predict_model import (
     evaluate_model,
     create_inference_pipeline,
     serialize_model,
+    load_model,
 )
 
 __all__ = [
@@ -13,4 +14,5 @@ __all__ = [
     "evaluate_model",
     "predict_model",
     "create_inference_pipeline",
+    "load_model",
 ]

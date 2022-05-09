@@ -5,7 +5,7 @@ import pandas as pd
 import click
 from src.data import read_data
 
-from src.enities.predict_pipeline_params import (
+from src.entities.predict_pipeline_params import (
     PredictPipelineParams,
     read_predict_pipeline_params,
 )
@@ -17,8 +17,8 @@ from src.models import (
     serialize_model,
     predict_model,
     evaluate_model,
+    load_model,
 )
-import mlflow
 
 from src.models.predict_model import create_inference_pipeline
 
@@ -30,18 +30,7 @@ logger.addHandler(handler)
 def predict_pipeline(config_path: str):
 
     predict_pipeline_params = read_predict_pipeline_params(config_path)
-
-    if predict_pipeline_params.use_mlflow:
-
-        mlflow.set_tracking_uri(predict_pipeline_params.mlflow_uri)
-        mlflow.set_experiment(predict_pipeline_params.mlflow_experiment)
-        with mlflow.start_run():
-            mlflow.log_artifact(config_path)
-            model_path, metrics = run_predict_pipeline(predict_pipeline_params)
-            mlflow.log_metrics(metrics)
-            mlflow.log_artifact(model_path)
-    else:
-        return run_predict_pipeline(predict_pipeline_params)
+    return run_predict_pipeline(predict_pipeline_params)
 
 
 def run_predict_pipeline(predict_pipeline_params):
@@ -49,7 +38,7 @@ def run_predict_pipeline(predict_pipeline_params):
     data = read_data(predict_pipeline_params.input_data_path)
     logger.info(f"data.shape is {data.shape}")
 
-    model = pickle.load(open(predict_pipeline_params.model_path, 'rb'))
+    model = load_model(predict_pipeline_params.model_path)
 
     predicts = predict_model(
         model,

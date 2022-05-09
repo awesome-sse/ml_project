@@ -5,9 +5,12 @@ import sys
 from pathlib import Path
 import click
 import pandas as pd
+import sklearn
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 
 from src.data import read_data, split_train_val_data
-from src.enities.train_pipeline_params import (
+from src.entities.train_pipeline_params import (
     TrainingPipelineParams,
     read_training_pipeline_params,
 )
@@ -18,6 +21,7 @@ from src.models import (
     serialize_model,
     predict_model,
     evaluate_model,
+    load_model,
 )
 import mlflow
 
@@ -32,15 +36,18 @@ logger.addHandler(handler)
 def train_pipeline(config_path: str):
     training_pipeline_params = read_training_pipeline_params(config_path)
 
-    if training_pipeline_params.use_mlflow:
+    if training_pipeline_params.ml_flow_params.use_mlflow:
 
-        mlflow.set_tracking_uri(training_pipeline_params.mlflow_uri)
-        mlflow.set_experiment(training_pipeline_params.mlflow_experiment)
+        mlflow.set_tracking_uri(training_pipeline_params.ml_flow_params.mlflow_uri)
+        mlflow.set_experiment(training_pipeline_params.ml_flow_params.mlflow_experiment)
         with mlflow.start_run():
             mlflow.log_artifact(config_path)
             model_path, metrics = run_train_pipeline(training_pipeline_params)
             mlflow.log_metrics(metrics)
             mlflow.log_artifact(model_path)
+            
+            model = load_model(training_pipeline_params.output_model_path)
+            mlflow.sklearn.log_model(model, training_pipeline_params.train_params.model_type)
     else:
         return run_train_pipeline(training_pipeline_params)
 

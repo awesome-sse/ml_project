@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 
-from src.enities.train_params import TrainingParams
+from src.entities.train_params import TrainingParams
 
 SklearnRegressionModel = Union[RandomForestClassifier, XGBClassifier]
 

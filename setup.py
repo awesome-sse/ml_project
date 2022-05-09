@@ -7,4 +7,10 @@ setup(
     description='ml in prodaction homework1',
     author='Stanislav',
     license='',
+    entry_points={
+        "console_scripts": [
+            "train_model = src.train_pipeline:train_pipeline_command",
+            "predict_model = src.train_pipeline:predict_pipeline_command"
+        ]
+    },
 )

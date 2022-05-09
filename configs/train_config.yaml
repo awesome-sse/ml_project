@@ -1,12 +1,10 @@
 input_data_path: "data/raw/heart_cleveland_upload.csv"
 output_model_path: "models/model.pkl"
 metric_path: "models/metrics.json"
-downloading_params:
-  s3_bucket: for-dvc
-  paths:
-    - train.csv
-    - test.csv
-  output_folder: "data/raw/"
+ml_flow_params:
+  use_mlflow: False
+  mlflow_uri: "http://127.0.0.1:5000"
+  mlflow_experiment: "homework1"
 splitting_params:
   val_size: 0.3
   random_state: 42
