@@ -78,6 +78,7 @@ def run_train_pipeline(training_pipeline_params):
     metrics = evaluate_model(
         predicts,
         val_target,
+        training_pipeline_params.train_params.model_type,
     )
     with open(training_pipeline_params.metric_path, "w") as metric_file:
         json.dump(metrics, metric_file)

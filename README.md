@@ -3,6 +3,35 @@ ml_project
 
 ml in prodaction homework1
 
+Installation:
+------------
+    pip install -r requirements.txt
+------------
+
+Download dataset:
+------------
+    mkdir data
+    cd data
+    mkdir raw
+    cd ..
+    kaggle datasets download -d cherngs/heart-disease-cleveland-uci --unzip -p data/raw
+------------
+or manually: https://www.kaggle.com/datasets/cherngs/heart-disease-cleveland-uci
+
+
+run train:
+------------
+    python -m src.train_pipeline configs/train_config.yaml
+------------
+run predict:
+------------
+    python -m src.predict_pipeline configs/predict_config.yaml
+------------
+run tests:
+------------
+    pytest tests/
+------------
+
 Project Organization
 ------------
 

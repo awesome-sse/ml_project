@@ -31,9 +31,9 @@ def process_numerical_features(numerical_df: pd.DataFrame) -> pd.DataFrame:
 def build_numerical_pipeline() -> Pipeline:
     num_pipeline = Pipeline(
         [
-            ("fill_nan", SimpleImputer(missing_values=np.nan, strategy="mean")),
+            ("fill_nan", SimpleImputer(missing_values=np.nan, strategy="median")),
             ("scaler", StandardScaler()),
-            ("poly_features", PolynomialFeatures(2)),
+            ("poly_features", PolynomialFeatures()),
         ]
     )
     return num_pipeline

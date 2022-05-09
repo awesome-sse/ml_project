@@ -20,9 +20,10 @@ def predict_model(
 
 
 def evaluate_model(
-    predicts: np.ndarray, target: pd.Series
+    predicts: np.ndarray, target: pd.Series, model_type: str,
 ) -> Dict[str, float]:
     return {
+        "model": model_type, 
         "accuracy_score": accuracy_score(target, predicts),
         "precision_score": precision_score(target, predicts),
         "recall_score": recall_score(target, predicts),
