@@ -18,6 +18,8 @@ Download dataset:
 ------------
 or manually: https://www.kaggle.com/datasets/cherngs/heart-disease-cleveland-uci
 
+or: dvc pull
+
 
 run train:
 ------------
