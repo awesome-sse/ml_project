@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from .feature_params import FeatureParams
 from marshmallow_dataclass import class_schema
 import yaml
 
@@ -12,6 +11,7 @@ class PredictPipelineParams:
     use_mlflow: bool = False
     mlflow_uri: str = "http://127.0.0.0/"
     mlflow_experiment: str = "inference_demo"
+
 
 PredictPipelineParamsSchema = class_schema(PredictPipelineParams)
 

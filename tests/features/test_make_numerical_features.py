@@ -14,6 +14,7 @@ def numerical_feature() -> str:
 def numerical_values() -> list[str]:
     return [1, 2, 3, np.nan]
 
+
 @pytest.fixture
 def fake_numerical_data(
     numerical_feature: str, numerical_values: list[str]

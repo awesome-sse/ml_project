@@ -1,7 +1,5 @@
 import numpy as np
-import pandas as pd
 import pytest
-from numpy.testing import assert_allclose
 
 from src.data.make_dataset import read_data
 from src.entities.feature_params import FeatureParams

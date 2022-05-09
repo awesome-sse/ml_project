@@ -1,31 +1,23 @@
 import sys
 import logging
-import pickle
 import pandas as pd
 import click
 from src.data import read_data
 
 from src.entities.predict_pipeline_params import (
-    PredictPipelineParams,
     read_predict_pipeline_params,
 )
 
-from src.features import make_features
-from src.features.build_features import extract_target, build_transformer
 from src.models import (
-    train_model,
-    serialize_model,
     predict_model,
-    evaluate_model,
     load_model,
 )
-
-from src.models.predict_model import create_inference_pipeline
 
 logger = logging.getLogger(__name__)
 handler = logging.StreamHandler(sys.stdout)
 logger.setLevel(logging.INFO)
 logger.addHandler(handler)
+
 
 def predict_pipeline(config_path: str):
 

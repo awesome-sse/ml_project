@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import click
-from typing import Tuple, NoReturn
+from typing import Tuple
 
 import pandas as pd
 from sklearn.model_selection import train_test_split

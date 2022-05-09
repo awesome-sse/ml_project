@@ -1,17 +1,10 @@
 import json
 import logging
-import os
 import sys
-from pathlib import Path
 import click
-import pandas as pd
-import sklearn
-from sklearn.ensemble import RandomForestClassifier
-from xgboost import XGBClassifier
 
 from src.data import read_data, split_train_val_data
 from src.entities.train_pipeline_params import (
-    TrainingPipelineParams,
     read_training_pipeline_params,
 )
 from src.features import make_features
@@ -45,7 +38,7 @@ def train_pipeline(config_path: str):
             model_path, metrics = run_train_pipeline(training_pipeline_params)
             mlflow.log_metrics(metrics)
             mlflow.log_artifact(model_path)
-            
+
             model = load_model(training_pipeline_params.output_model_path)
             mlflow.sklearn.log_model(model, training_pipeline_params.train_params.model_type)
     else:

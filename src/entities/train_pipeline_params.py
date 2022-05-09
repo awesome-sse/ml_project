@@ -1,5 +1,3 @@
-from typing import Optional
-
 from dataclasses import dataclass
 
 from .ml_flow_params import MlFlowParams

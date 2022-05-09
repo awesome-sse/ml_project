@@ -1,4 +1,4 @@
-from typing import Dict, Union
+from typing import Union
 
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -20,5 +20,3 @@ def train_model(
         raise NotImplementedError()
     model.fit(features, target)
     return model
-
-

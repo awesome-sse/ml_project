@@ -14,6 +14,7 @@ def categorical_feature() -> str:
 def categorical_values() -> list[str]:
     return ["1", "2", "3", np.nan]
 
+
 @pytest.fixture
 def fake_categorical_data(
     categorical_feature: str, categorical_values: list[str]

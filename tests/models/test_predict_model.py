@@ -1,14 +1,8 @@
-import os
-import pickle
-from turtle import shape
-from sklearn.metrics import accuracy_score
-from sklearn.utils.validation import check_is_fitted
 from typing import Tuple
 
 import pandas as pd
 import pytest
 from py._path.local import LocalPath
-from xgboost import XGBClassifier
 from src.models.predict_model import predict_model
 
 from src.data.make_dataset import read_data
@@ -17,6 +11,7 @@ from src.entities.feature_params import FeatureParams
 from src.features.build_features import make_features, extract_target, build_transformer
 from src.models.train_model import train_model
 from src.models.predict_model import serialize_model, load_model
+from sklearn.metrics import accuracy_score
 
 
 @pytest.fixture
@@ -54,7 +49,7 @@ def test_load_model(features_and_target: Tuple[pd.DataFrame, pd.Series], tmpdir:
     new_model = load_model(model_path)
 
     pred_target = predict_model(new_model, features)
-    
+
     assert pred_target.shape == target.shape
     assert accuracy_score(target, pred_target) > 0.1
     assert isinstance(new_model, type(model))
