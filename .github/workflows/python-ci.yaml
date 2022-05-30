@@ -9,12 +9,12 @@ on:
   pull_request:
     branches: [ homework2 ]
 
-variables:
-  PATH_TO_MODEL: "models/model.pkl"
-
 jobs:
   build:
 
+    variables:
+      PATH_TO_MODEL: "models/model.pkl"
+      
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
