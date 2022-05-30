@@ -1,7 +1,6 @@
 ml_project
 ==============================
-
-ml in prodaction homework1
+ml in prodaction homework
 
 Installation:
 ------------
