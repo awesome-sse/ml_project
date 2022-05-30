@@ -6,7 +6,8 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--PATH_TO_DATA", dest="Data_path", type=str, default="data/raw/predict_heart_cleveland_upload.csv")
+parser.add_argument("--PATH_TO_DATA", dest="Data_path", type=str,
+                    default="data/raw/predict_heart_cleveland_upload.csv")
 parser.add_argument("-i", dest="IP", type=str, default="127.0.0.1")
 parser.add_argument("-p", dest="Port", type=str, default="8000")
 parser.add_argument("-n", dest="Number of request", type=int)
@@ -25,9 +26,9 @@ if __name__ == "__main__":
     logger.info("Read file")
 
     data = pd.read_csv(data_path)
-    data['id'] = data.index
+    data["id"] = data.index
     request_features = list(data.columns)
-    
+
     len_requests = data.shape[0] if not len_requests else len_requests
     url = "http://" + ip + ":" + port + "/predict/"
 
@@ -41,10 +42,8 @@ if __name__ == "__main__":
 
         response = requests.get(
             url,
-            json={"data": [request_data], "features": request_features} 
+            json={"data": [request_data], "features": request_features}
         )
 
         logger.info(f"Status code: {response.status_code}")
         logger.info(f"Response data: {response.json()}")
-
-

@@ -33,7 +33,7 @@ def build_numerical_pipeline() -> Pipeline:
         [
             ("fill_nan", SimpleImputer(missing_values=np.nan, strategy="median")),
             ("scaler", StandardScaler()),
-            ("poly_features", PolynomialFeatures()),
+            # ("poly_features", PolynomialFeatures()),
         ]
     )
     return num_pipeline
