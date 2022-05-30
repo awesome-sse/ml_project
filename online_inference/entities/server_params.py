@@ -3,6 +3,8 @@ from sklearn.pipeline import Pipeline
 from pydantic import BaseModel, conlist
 from typing import Union, Optional
 import pickle
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import PolynomialFeatures
 
 
 class HeartDiseaseModel(BaseModel):

@@ -3,12 +3,11 @@ import uvicorn
 from fastapi import FastAPI
 import logging
 
-from online_inference.entities import load_model
-
-from online_inference.entities import (
+from entities import (
     HeartDiseaseModel,
     HeartDiseaseResponse,
     make_predict,
+    load_model,
 )
 
 app = FastAPI()
@@ -40,4 +39,4 @@ def predict(request: HeartDiseaseModel):
     return make_predict(request.data, request.features, model)
 
 if __name__ == "__main__":
-    uvicorn.run("online_inference.server:app", host="127.0.0.1", port=os.getenv("PORT", 8000))
+    uvicorn.run("server:app", host="127.0.0.1", port=os.getenv("PORT", 8000))

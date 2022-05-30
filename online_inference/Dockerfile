@@ -1,14 +1,15 @@
 FROM python:3.9
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+COPY requirements.txt app/requirements.txt
+RUN pip3 install -r app/requirements.txt
 
-ADD models models
-ADD entities entities
-COPY server.py server.py
+COPY models app/models
+ADD entities app/entities
+COPY server.py app/server.py
 
-WORKDIR .
+WORKDIR /app
 
-ENV PATH_TO_MODEL="../models/model.pkl"
+ENV PATH_TO_MODEL="models/model.pkl"
+EXPOSE 8000
 
-CMD python ./server.py
+CMD python3 -m server

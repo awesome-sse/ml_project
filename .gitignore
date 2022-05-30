@@ -88,3 +88,6 @@ target/
 # Mypy cache
 .mypy_cache/
 /heart_cleveland_upload.csv
+
+#Test
+.pytest_cache
