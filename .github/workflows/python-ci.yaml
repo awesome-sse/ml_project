@@ -12,9 +12,6 @@ on:
 jobs:
   build:
 
-    variables:
-      PATH_TO_MODEL: "models/model.pkl"
-      
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -41,5 +38,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
+        export PATH_TO_MODEL="models/model.pkl"
         cd online_inference
         python -m pytest tests/test_server.py
