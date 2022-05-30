@@ -12,3 +12,4 @@ pandas==1.1.5
 boto3==1.17.49
 mlflow==1.15.0
 xgboost==1.3.3
+fastapi==1.6.1

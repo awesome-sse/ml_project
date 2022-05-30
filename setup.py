@@ -4,7 +4,7 @@ setup(
     name='src',
     packages=find_packages(),
     version='0.1.0',
-    description='ml in prodaction homework1',
+    description='ml in prodaction homework2',
     author='Stanislav',
     license='',
     entry_points={

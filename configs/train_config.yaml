@@ -2,7 +2,7 @@ input_data_path: "data/raw/heart_cleveland_upload.csv"
 output_model_path: "models/model.pkl"
 metric_path: "models/metrics.json"
 ml_flow_params:
-  use_mlflow: True
+  use_mlflow: False
   mlflow_uri: "http://127.0.0.1:5000"
   mlflow_experiment: "homework1"
 splitting_params:
