@@ -5,9 +5,9 @@ name: Python package ci
 
 on:
   push:
-    branches: [ homework1 ]
+    branches: [ homework2 ]
   pull_request:
-    branches: [ homework1 ]
+    branches: [ homework2 ]
 
 jobs:
   build:
@@ -38,4 +38,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        python -m pytest tests\test_server.py
