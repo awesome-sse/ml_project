@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 import click
 
-DATA_FILENAME = "data.csv"
+DATA_FILENAME = "features.csv"
 PREDICT_FILENAME = "predict.csv"
 
 

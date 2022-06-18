@@ -38,7 +38,7 @@ with DAG(
 
     features_sensor = FileSensor(
         task_id="data_sensor",
-        filepath="/opt/airflow" + DATA_DIR_NAME + "/data.csv"
+        filepath="/opt/airflow" + DATA_DIR_NAME + "/features.csv"
     )
 
     model_sensor = FileSensor(
