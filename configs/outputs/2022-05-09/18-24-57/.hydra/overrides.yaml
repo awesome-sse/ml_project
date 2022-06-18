@@ -1,2 +1,0 @@
-- ++train_params.model_type=XGBClassifier
-- ++splitting_params.val_size=0.25

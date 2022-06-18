@@ -1,88 +1,16 @@
-ml_project
-==============================
-
-ml in prodaction homework1
-
-Installation:
+# Домашнее задание №3
+Для корректной работы с переменными, созданными из UI:
 ------------
-    pip install -r requirements.txt
+    export FERNET_KEY=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")
 ------------
-
-Download dataset:
+Для сборки и запуска airflow:
 ------------
-    mkdir data
-    cd data
-    mkdir raw
-    cd ..
-    kaggle datasets download -d cherngs/heart-disease-cleveland-uci --unzip -p data/raw
-------------
-or manually: https://www.kaggle.com/datasets/cherngs/heart-disease-cleveland-uci
-
-or: dvc pull
-
-
-run train:
-------------
-    python -m src.train_pipeline configs/train_config.yaml
-------------
-run predict:
-------------
-    python -m src.predict_pipeline configs/predict_config.yaml
-------------
-run tests:
-------------
-    pytest tests/
+    docker compose up --build
 ------------
 
-Project Organization
-------------
-
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+Для правильной работы dag'ов:
+- Запустить dag data_generator
+- необходимо создать File (path) connection с названием 'fs_default' и в поле Extra ввести {"path": "/opt/airflow/data"}
+- Запустить dag train
+- для dag'а 'predict' необходимо создать airflow Variables с названием MODELPATH и TRANSFORMERPATH со значением /data/models/{{ds}}/model.pkl и /data/transformer_model/{{ds}}/transform.pkl, где {{ds}} - дата в формате YYYY-MM-DD
+- Запустить dag predict

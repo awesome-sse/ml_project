@@ -1,5 +1,9 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*/__pycache__/
+../__pycache__/
+../.DS_Store
+../.idea/
 *.py[cod]
 
 # C extensions
@@ -58,6 +62,7 @@ target/
 
 # DotEnv configuration
 .env
+.venv
 
 # Database
 *.db
@@ -77,6 +82,7 @@ target/
 
 # exclude data from source control by default
 /data/
+/docs/
 
 # Mac OS-specific storage files
 .DS_Store
@@ -87,4 +93,17 @@ target/
 
 # Mypy cache
 .mypy_cache/
-/heart_cleveland_upload.csv
+
+# ML-flow runs information
+mlruns/
+
+# output data of models trainning
+models/*.pkl
+models/*.json
+outputs/*.json
+outputs/*.txt
+
+# Temp files
+try_mlflow.py
+text_for_PR.md
+*.png
