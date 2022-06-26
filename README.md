@@ -31,8 +31,6 @@
 ------------
 
 ### Delete:
-------------
     kubectl delete --all pods
     kubectl delete --all replicaset
     kubectl delete --all deployment
-------------
