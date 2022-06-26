@@ -1,88 +1,38 @@
-ml_project
+## ML in prodaction homework4
 ==============================
-
-ml in prodaction homework1
-
-Installation:
+## Start server
+### Install minikube on Windows:
 ------------
-    pip install -r requirements.txt
+    winget install minikube
 ------------
 
-Download dataset:
+### Start kubernetes cluster:
 ------------
-    mkdir data
-    cd data
-    mkdir raw
-    cd ..
-    kaggle datasets download -d cherngs/heart-disease-cleveland-uci --unzip -p data/raw
-------------
-or manually: https://www.kaggle.com/datasets/cherngs/heart-disease-cleveland-uci
-
-or: dvc pull
-
-
-run train:
-------------
-    python -m src.train_pipeline configs/train_config.yaml
-------------
-run predict:
-------------
-    python -m src.predict_pipeline configs/predict_config.yaml
-------------
-run tests:
-------------
-    pytest tests/
+    minikube start --driver=docker
 ------------
 
-Project Organization
+### Start Docker Desktop
+
+### Copy docker image:
+------------
+    minikube image load aweesomesse/ml_prod_homework2:v1 // minikube image load aweesomesse/ml_prod_homework2:v2
 ------------
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+### Usage kuberctl:
+------------
+    kubectl apply -f *filename*.yaml
+------------
 
+### Info:
+------------
+    kubectl get pods
+    kubectl get replicaset
+    kubectl get deployment
+------------
 
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+### Delete:
+------------
+    kubectl delete --all pods
+    kubectl delete --all replicaset
+    kubectl delete --all deployment
+------------
